@@ -115,9 +115,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.trackNameLabel.text = self.player.album.tracks[indexPath.row]
         cell.trackDurationLabel.text = "3:54"
         return cell
-
     }
     
+    func tableView( tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath )
+    {
+        let trackNumber = indexPath.row + 1
+        player.selectTrack( trackNumber )
+        player.play()
+        updatePlayButton()
+        updateBackButton()
+        updateNextButton()
+    }
+    
+    func updateTableRows() {
+        if let indexPaths = self.tableview.indexPathsForVisibleRows {
+            self.tableview.reloadRowsAtIndexPaths( indexPaths, withRowAnimation:UITableViewRowAnimation.None )
+        }
+    }
     
     func updatePlayButton() {
         let filename = player.playing ? "pause.png" : "play.png"
@@ -133,13 +147,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateNextButton() {
         self.nextButton.enabled = !self.player.lastTrack
         updateTableRows()
-    }
-    
-    
-    func updateTableRows() {
-        if let indexPaths = self.tableview.indexPathsForVisibleRows {
-            self.tableview.reloadRowsAtIndexPaths( indexPaths, withRowAnimation:UITableViewRowAnimation.None )
-        }
     }
     
     func audioPlayerDidFinishPlaying( playerNotToUse: AVAudioPlayer, successfully flag: Bool) {

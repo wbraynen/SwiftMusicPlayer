@@ -1,5 +1,5 @@
 # SwiftMusicPlayer
-An mp3 player written in Swift for playing and viewing the artwork of best albums from pianowill.com, online or offline.  Uses AVAudioPlayer.
+An mp3 player written in Swift for playing and viewing the artwork of best albums from [pianowill.com](http://pianowill.com), online or offline.  Uses AVAudioPlayer.
 
 Screenshots of what I have implemented so far:
 
